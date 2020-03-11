@@ -1,0 +1,70 @@
+after
+              <td class="center"><?php echo $column_image; ?></td>
+
+add code
+		<!-- FilterImageId -->
+			  <td width="20px" ><?php if ($sort == 'p.product_id') { ?>
+                <a href="<?php echo $sort_id; ?>" class="<?php echo strtolower($order); ?>">ID</a>
+                <?php } else { ?>
+                <a href="<?php echo $sort_id; ?>">ID</a>
+                <?php } ?></td>
+		<!-- FilterImageId end -->
+
+find
+            <tr class="filter">
+              <td></td>
+              <td></td>
+
+replace on this code
+            <tr class="filter">
+              <td></td>
+	<!-- FilterImageId -->
+              <td class="center">
+				<select name="filter_image" >
+				 <?php if ($filter_image == 0) { ?>
+				 <option value="0" selected="selected"></option>
+                 <option value="1"><?php echo $text_enabled; ?></option>
+                 <option value="2"><?php echo $text_disabled; ?></option>
+                 <?php } else if ($filter_image == 1) { ?>
+				 <option value="0"></option>
+                 <option value="1" selected="selected"><?php echo $text_enabled; ?></option>
+                 <option value="2"><?php echo $text_disabled; ?></option>
+                 <?php } else if ($filter_image == 2) { ?>
+				 <option value="0"></option>
+                 <option value="1"><?php echo $text_enabled; ?></option>
+                 <option value="2" selected="selected"><?php echo $text_disabled; ?></option>
+                 <?php } ?>
+              	 </select>
+			  </td>
+			  <td ><input type="text" name="filter_id" value="<?php echo $filter_id; ?>" /></td>
+	<!-- FilterImageId end -->
+
+after
+              <td class="center"><img src="<?php echo $product['image']; ?>" alt="<?php echo $product['name']; ?>" style="padding: 1px; border: 1px solid #DDDDDD;" /></td>
+
+add code
+	<!-- FilterImageId -->
+			  <td ><?php echo $product['product_id']; ?></td>
+	<!-- FilterImageId end -->
+
+after
+	var filter_model = $('input[name=\'filter_model\']').attr('value');
+	
+	if (filter_model) {
+		url += '&filter_model=' + encodeURIComponent(filter_model);
+	}
+
+add code
+	<!-- FilterImageId -->
+	var filter_image = $('select[name=\'filter_image\']').attr('value');
+	
+	if (filter_image !='0') {
+		url += '&filter_image=' + encodeURIComponent(filter_image);
+	}
+
+	var filter_id = $('input[name=\'filter_id\']').attr('value');
+	
+	if (filter_id) {
+		url += '&filter_id=' + encodeURIComponent(filter_id);
+	}
+	<!-- FilterImageId -->
